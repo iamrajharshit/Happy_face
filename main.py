@@ -14,7 +14,7 @@ prompt = st.text_area("Enter a prompt:")
 # Load the model and set up the pipeline
 modelid = "CompVis/stable-diffusion-v1-4"
 device = "cpu"  # Change this to "cuda" if GPU is available, otherwise "cpu"
-pipe = StableDiffusionPipeline.from_pretrained(modelid, use_auth_token=auth_token)
+pipe = StableDiffusionPipeline.from_pretrained(modelid,revision="fp16", use_auth_token=auth_token)
 pipe.to(device)
 
 # Create a button to generate the image
