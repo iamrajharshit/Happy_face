@@ -20,6 +20,7 @@ revision = "fp16"
 
 
 # Load the model using the correct attribute name ("from_pretrained")
+#pipe error with dtype=torch.float16 and revision
 pipe = StableDiffusionPipeline.from_pretrained(modelid, revision=revision, dtype=torch.float16, use_auth_token=auth_token)
 
 pipe.to(device)
