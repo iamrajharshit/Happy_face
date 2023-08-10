@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image
+import torch
 from torch import autocast
 from diffusers import StableDiffusionPipeline
 from authtoken import auth_token
@@ -14,7 +15,13 @@ prompt = st.text_area("Enter a prompt:")
 # Load the model and set up the pipeline
 modelid = "CompVis/stable-diffusion-v1-4"
 device = "cpu"  # Change this to "cuda" if GPU is available, otherwise "cpu"
-pipe = StableDiffusionPipeline.from_pretrained(modelid,revision="fp16", use_auth_token=auth_token)
+# Replace these values with the actual model ID, revision, and auth token
+revision = "fp16"
+
+
+# Load the model using the correct attribute name ("from_pretrained")
+pipe = StableDiffusionPipeline.from_pretrained(modelid, revision=revision, dtype=torch.float16, use_auth_token=auth_token)
+
 pipe.to(device)
 
 # Create a button to generate the image
